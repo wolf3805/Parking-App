@@ -1,0 +1,67 @@
+<div class="register-vehicle">
+    <div class="register-vehicle-form">
+        <h2>Registrar tipo de vehículo</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+            <mat-form-field class="input-container" appearance="fill">
+                <mat-label>Clave</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    formControlName="key"
+                    placeholder="Ingrese una clave"
+                />
+                <mat-error *ngIf="key?.hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-container" appearance="fill">
+                <mat-label>Título</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    formControlName="title"
+                    placeholder="Ingrese el título"
+                />
+                <mat-error *ngIf="title?.hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-container" appearance="fill">
+                <mat-label>Descripción</mat-label>
+                <input
+                    type="text"
+                    matInput
+                    formControlName="description"
+                    placeholder="Ingrese la descripción"
+                />
+                <mat-error *ngIf="description?.hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-container" appearance="fill">
+                <mat-label>Tarifa</mat-label>
+                <input
+                    type="number"
+                    matInput
+                    formControlName="rate"
+                    placeholder="Ingrese la tarifa"
+                />
+                <mat-error *ngIf="rate?.hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <button type="button" mat-raised-button routerLink="/dashboard/tipos-de-vehiculos">
+                Cancelar
+            </button>
+            <button type="submit" mat-flat-button color="primary">
+                Registrar
+            </button>
+            <small
+                *ngIf="accessDenied"
+                class="text-danger d-block text-left"
+            >
+                Error al iniciar sesión, corrobore sus datos de acceso.
+            </small>
+        </form>
+    </div>
+</div>

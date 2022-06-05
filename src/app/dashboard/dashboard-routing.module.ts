@@ -5,9 +5,10 @@ import { AuthGuard } from '../auth.guard';
 import { DashboardLayoutComponent } from './template-parts/dashboard-layout/dashboard-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { VehicleStaysComponent } from './components/vehicle-stays/vehicle-stays.component';
-import { VehicleTypesComponent } from './components/vehicle-types/vehicle-types.component';
 import { ListVehiclesComponent } from './components/vehicles/list-vehicles/list-vehicles.component';
 import { RegisterVehicleComponent } from './components/vehicles/register-vehicle/register-vehicle.component';
+import { ListVehicleTypesComponent } from './components/vehicle-types/list-vehicle-types/list-vehicle-types.component';
+import { RegisterVehicleTypeComponent } from './components/vehicle-types/register-vehicle-type/register-vehicle-type.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'estancias', component: VehicleStaysComponent },
       { path: 'vehiculos', component: ListVehiclesComponent },
       { path: 'vehiculos/registrar', component: RegisterVehicleComponent },
-      { path: 'vehiculos/tipos', component: VehicleTypesComponent },
+      { path: 'tipos-de-vehiculos', component: ListVehicleTypesComponent },
+      { path: 'tipos-de-vehiculos/registrar', component: RegisterVehicleTypeComponent },
     ]
   },
 ];

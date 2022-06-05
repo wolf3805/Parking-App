@@ -1,21 +1,21 @@
 <div class="list-vehicles">
     <div class="title-container">
-        <h1>Estancias de Vehículos</h1>
+        <h1>Lista de tipos de vehículos</h1>
         <button
             mat-flat-button
             color="primary"
-            routerLink="/dashboard/vehiculos/registrar"
+            routerLink="/dashboard/tipos-de-vehiculos/registrar"
         >
-            Agregar estancia
+            Agregar tipo de vehículo
         </button>
     </div>
     <mat-form-field appearance="standard">
-        <mat-label>Filtrar por numero de placa</mat-label>
+        <mat-label>Filtrar por título</mat-label>
         <input
             matInput
             type="text"
             (keyup)="applyFilter($event)"
-            placeholder="Ingrese el numero de placa"
+            placeholder="Ingrese el título"
             #input
         >
     </mat-form-field>
@@ -39,46 +39,60 @@
                     {{row.id}}
                 </td>
             </ng-container>
-            <ng-container matColumnDef="vehicleId">
+            <ng-container matColumnDef="key">
                 <th
                     mat-header-cell
                     *matHeaderCellDef
                 >
-                    Vehículo
+                    Clave
                 </th>
                 <td
                     mat-cell
                     *matCellDef="let row"
                 >
-                    {{row.vehicle_id}}
+                    {{row.key}}
                 </td>
             </ng-container>
-            <ng-container matColumnDef="checkIn">
+            <ng-container matColumnDef="title">
                 <th
                     mat-header-cell
                     *matHeaderCellDef
                 >
-                    Hora de entrada
+                    Título
                 </th>
                 <td
                     mat-cell
                     *matCellDef="let row"
                 >
-                    {{row.check_in}}
+                    {{row.title}}
                 </td>
             </ng-container>
-            <ng-container matColumnDef="checkOut">
+            <ng-container matColumnDef="description">
                 <th
                     mat-header-cell
                     *matHeaderCellDef
                 >
-                    Hora de salida
+                    Descripción
                 </th>
                 <td
                     mat-cell
                     *matCellDef="let row"
                 >
-                    {{row.check_out}}
+                    {{row.description}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="rate">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Tarifa
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                >
+                    {{row.rate}}
                 </td>
             </ng-container>
             <ng-container matColumnDef="createdAt">

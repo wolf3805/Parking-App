@@ -1,17 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { VehiclesTypesResponse } from 'src/app/models/VehiclesTypesResponse';
+import { VehicleStaysResponse } from 'src/app/models/VehiclesStaysResponse';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VehicleTypesService {
+export class VehicleStaysService {
 
   constructor(private http: HttpClient) { }
 
   create(data: object) {
-    return this.http.post<VehiclesTypesResponse>('/api/vehicle-types', data);
+    return this.http.post<VehicleStaysResponse>('/api/vehicle-stays', data);
   }
 
   getAll(params: object = {}) {
@@ -19,11 +18,11 @@ export class VehicleTypesService {
       fromObject: { ...params }
     });
 
-    return this.http.get<VehiclesTypesResponse>('/api/vehicle-types', {params: formattedParams});
+    return this.http.get<VehicleStaysResponse>('/api/vehicle-stays', { params: formattedParams });
   }
 
   delete(id: number) {
-    return this.http.delete<VehiclesTypesResponse>(`/api/vehicle-types/${id}`);
+    return this.http.delete<VehicleStaysResponse>(`/api/vehicle-stays/${id}`);
   }
 
 }

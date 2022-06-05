@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { VehicleTypesService } from 'src/app/dashboard/services/vehicle-types.service';
 
-import { Vehicle } from 'src/app/models/Vehicle';
-import { VehiclesService } from 'src/app/services/vehicles.service';
+import { VehicleType } from 'src/app/models/VehicleType';
 import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
-  selector: 'app-list-vehicles',
-  templateUrl: './list-vehicles.component.html',
-  styleUrls: ['./list-vehicles.component.scss']
+  selector: 'app-list-vehicle-types',
+  templateUrl: './list-vehicle-types.component.html',
+  styleUrls: ['./list-vehicle-types.component.scss']
 })
-export class ListVehiclesComponent implements OnInit {
+export class ListVehicleTypesComponent implements OnInit {
 
   filters: object = {};
   isLoading: boolean = false;
@@ -24,19 +24,21 @@ export class ListVehiclesComponent implements OnInit {
   ];
   displayedColumns: string[] = [
     'id',
-    'vehicleTypeId',
-    'plateNumber',
+    'key',
+    'title',
+    'description',
+    'rate',
     'createdAt',
     'updatedAt',
     'options',
   ];
 
-  dataSource: MatTableDataSource<Vehicle> = new MatTableDataSource<Vehicle>([]);
+  dataSource: MatTableDataSource<VehicleType> = new MatTableDataSource<VehicleType>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private vehicleService: VehiclesService,
+    private vehicleTypeService: VehicleTypesService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) { }
@@ -67,9 +69,9 @@ export class ListVehiclesComponent implements OnInit {
   loadData(params: object = {}) {
     this.isLoading = true;
 
-    this.vehicleService.getAll(params)
+    this.vehicleTypeService.getAll(params)
       .subscribe((response) => {
-        this.dataSource = new MatTableDataSource<Vehicle>(response.data.vehicles);
+        this.dataSource = new MatTableDataSource<VehicleType>(response.data.vehicle_types);
         this.paginator.pageIndex = response.data.meta.current_page - 1;
         this.paginator.length = response.data.meta.total;
         this.isLoading = false;
@@ -79,15 +81,15 @@ export class ListVehiclesComponent implements OnInit {
   delete(id: number) {
     this.isLoading = true;
 
-    this.vehicleService.delete(id)
+    this.vehicleTypeService.delete(id)
       .subscribe({
         next: () => {
-          this.snackBar.open('Vehículo eliminado correctamente.', 'Cerrar', {
+          this.snackBar.open('Tipo de vehículo eliminado correctamente.', 'Cerrar', {
             duration: 3000
           });
         },
         error: () => {
-          this.snackBar.open('Ocurrio un error al eliminar el vehículo.', 'Cerrar', {
+          this.snackBar.open('Ocurrio un error al eliminar el tipo de vehículo.', 'Cerrar', {
             duration: 3000
           });
         }

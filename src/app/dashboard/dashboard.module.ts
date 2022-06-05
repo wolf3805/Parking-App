@@ -23,10 +23,11 @@ import { HeaderComponent } from './template-parts/header/header.component';
 import { LeftSidebarComponent } from './template-parts/left-sidebar/left-sidebar.component';
 import { DashboardLayoutComponent } from './template-parts/dashboard-layout/dashboard-layout.component';
 import { ListVehiclesComponent } from './components/vehicles/list-vehicles/list-vehicles.component';
-import { VehicleTypesComponent } from './components/vehicle-types/vehicle-types.component';
 import { VehicleStaysComponent } from './components/vehicle-stays/vehicle-stays.component';
 import { RegisterVehicleComponent } from './components/vehicles/register-vehicle/register-vehicle.component';
 import { DeleteDialogComponent } from './components/dialogs/delete-dialog/delete-dialog.component';
+import { ListVehicleTypesComponent } from './components/vehicle-types/list-vehicle-types/list-vehicle-types.component';
+import { RegisterVehicleTypeComponent } from './components/vehicle-types/register-vehicle-type/register-vehicle-type.component';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,11 @@ import { DeleteDialogComponent } from './components/dialogs/delete-dialog/delete
     HeaderComponent,
     LeftSidebarComponent,
     ListVehiclesComponent,
-    VehicleTypesComponent,
     VehicleStaysComponent,
     RegisterVehicleComponent,
     DeleteDialogComponent,
+    ListVehicleTypesComponent,
+    RegisterVehicleTypeComponent,
   ],
   imports: [
     CommonModule,
