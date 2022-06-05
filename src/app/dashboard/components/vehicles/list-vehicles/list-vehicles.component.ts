@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Vehicle } from 'src/app/models/Vehicle';
 import { VehiclesService } from 'src/app/services/vehicles.service';
+import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-list-vehicles',
@@ -33,7 +36,11 @@ export class ListVehiclesComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private vehicleService: VehiclesService) { }
+  constructor(
+    private vehicleService: VehiclesService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.loadData()
@@ -68,6 +75,38 @@ export class ListVehiclesComponent implements OnInit {
         this.paginator.length = response.data.meta.total;
         this.isLoading = false;
       })
+  }
+
+  delete(id: number) {
+    this.isLoading = true;
+
+    this.vehicleService.delete(id)
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Vehículo eliminado correctamente.', 'Cerrar', {
+            duration: 3000
+          });
+        },
+        error: () => {
+          this.snackBar.open('Ocurrio un error al eliminar el vehículo.', 'Cerrar', {
+            duration: 3000
+          });
+        }
+      });
+  }
+
+  openDeleteDialog(id: number) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+
+    dialogRef
+      .afterClosed()
+      .subscribe((confirmation: Boolean) => {
+        if (confirmation) {
+          this.delete(id)
+
+          this.loadData()
+        }
+      });
   }
 
 }

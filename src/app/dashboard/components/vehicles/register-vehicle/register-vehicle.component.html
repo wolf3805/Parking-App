@@ -4,7 +4,12 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
             <mat-form-field class="input-container" appearance="fill">
                 <mat-label>Numero de placas</mat-label>
-                <input type="text" matInput formControlName="plateNumber" placeholder="Ex. pat@example.com">
+                <input
+                    type="text"
+                    matInput
+                    formControlName="plateNumber"
+                    placeholder="Ingrese el numero de placas"
+                />
                 <mat-error *ngIf="plateNumber?.hasError('required')">
                     Este campo es requerido
                 </mat-error>

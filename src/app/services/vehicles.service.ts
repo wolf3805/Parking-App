@@ -22,4 +22,8 @@ export class VehiclesService {
     return this.http.get<VehiclesResponse>('/api/vehicles', { params: formattedParams });
   }
 
+  delete(id: number) {
+    return this.http.delete<VehiclesResponse>(`/api/vehicles/${id}`);
+  }
+
 }

@@ -26,6 +26,7 @@ import { ListVehiclesComponent } from './components/vehicles/list-vehicles/list-
 import { VehicleTypesComponent } from './components/vehicle-types/vehicle-types.component';
 import { VehicleStaysComponent } from './components/vehicle-stays/vehicle-stays.component';
 import { RegisterVehicleComponent } from './components/vehicles/register-vehicle/register-vehicle.component';
+import { DeleteDialogComponent } from './components/dialogs/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RegisterVehicleComponent } from './components/vehicles/register-vehicle
     VehicleTypesComponent,
     VehicleStaysComponent,
     RegisterVehicleComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,
