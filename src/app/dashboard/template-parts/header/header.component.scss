@@ -1,0 +1,19 @@
+.header {
+    button {
+        color: white;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            color: rgb(216, 216, 216);
+        }
+    }
+
+    .spacer {
+        flex: 1 1 auto;
+    }
+}

@@ -1,0 +1,37 @@
+<mat-toolbar
+    class="header"
+    color="primary"
+>
+    <button
+        class="toggle-menu"
+        mat-icon-button
+        aria-label="Example icon-button with menu icon"
+        (click)="leftSidebarStatusNotify.emit()"
+    >
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <button
+        class="link"
+        mat-button
+        [matMenuTriggerFor]="menu"
+    >
+        Alan Galeana
+        <mat-icon
+            aria-hidden="false"
+            aria-label="home icon">
+            keyboard_arrow_down
+        </mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" >
+        <button mat-menu-item>
+            Perfil
+        </button>
+        <button
+            mat-menu-item
+            routerLink="/logout"
+        >
+            Cerrar sesión
+        </button>
+    </mat-menu>
+</mat-toolbar>

@@ -1,0 +1,130 @@
+<div class="list-vehicles">
+    <div class="title-container">
+        <h1>Lista de Vehículos</h1>
+        <button
+            mat-flat-button
+            color="primary"
+            routerLink="/dashboard/vehiculos/registrar"
+        >
+            Agregar vehículo
+        </button>
+    </div>
+    <mat-form-field appearance="standard">
+        <mat-label>Filtrar por numero de placa</mat-label>
+        <input
+            matInput
+            type="text"
+            (keyup)="applyFilter($event)"
+            placeholder="Ingrese el numero de placa"
+            #input
+        >
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+        <table
+            mat-table
+            [dataSource]="dataSource"
+        >
+            <ng-container matColumnDef="id">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Id
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                >
+                    {{row.id}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Opciones
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                >
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Editar</button>
+                        <button mat-menu-item>Eliminar</button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="vehicleTypeId">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Typo de vehículo
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                >
+                    {{row.vehicle_type_id}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="plateNumber">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Placas
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                >
+                    {{row.plate_number}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="createdAt">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Fecha de creación
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                >
+                    {{row.created_at}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="updatedAt">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                >
+                    Fecha de actualización
+                </th>
+                <td
+                    mat-cell
+                    *matCellDef="let row"
+                >
+                    {{row.updated_at}}
+                </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr
+                class="mat-row"
+                *matNoDataRow
+            >
+                <td class="mat-cell" colspan="4">No se encontraron resultados para la busqueda "{{input.value}}"</td>
+            </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Páginación de datos"></mat-paginator>
+    </div>
+</div>

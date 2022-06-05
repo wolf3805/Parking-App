@@ -1,0 +1,15 @@
+<mat-sidenav-container class="dashboard-layout">
+    <mat-sidenav
+        class="sidenav"
+        mode="side"
+        [(opened)]="opened"
+    >
+        <app-left-sidebar></app-left-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header (leftSidebarStatusNotify)="changeLeftSidebarStatus()"></app-header>
+        <div class="main-content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

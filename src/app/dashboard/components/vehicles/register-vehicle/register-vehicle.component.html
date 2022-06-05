@@ -1,0 +1,37 @@
+<div class="register-vehicle">
+    <div class="register-vehicle-form">
+        <h2>Registro de vehículo</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+            <mat-form-field class="input-container" appearance="fill">
+                <mat-label>Numero de placas</mat-label>
+                <input type="text" matInput formControlName="plateNumber" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="plateNumber?.hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-container" appearance="fill">
+                <mat-label>Tipo de vehículo</mat-label>
+                <mat-select formControlName="vehicleTypeId">
+                    <mat-option *ngFor="let vehicleType of vehicleTypes" [value]="vehicleType.id">
+                        {{vehicleType.title}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="vehicleTypeId?.hasError('required')">
+                    Este campo es requerido
+                </mat-error>
+            </mat-form-field>
+            <button type="button" mat-raised-button routerLink="/dashboard/vehiculos">
+                Cancelar
+            </button>
+            <button type="submit" mat-flat-button color="primary">
+                Registrar
+            </button>
+            <small
+                *ngIf="accessDenied"
+                class="text-danger d-block text-left"
+            >
+                Error al iniciar sesión, corrobore sus datos de acceso.
+            </small>
+        </form>
+    </div>
+</div>
