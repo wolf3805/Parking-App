@@ -13,6 +13,10 @@ export class VehicleStaysService {
     return this.http.post<VehicleStaysResponse>('/api/vehicle-stays', data);
   }
 
+  update(id: number, data: object) {
+    return this.http.post<VehicleStaysResponse>(`/api/vehicle-stays/${id}`, {...data, ...{ _method: 'PUT' }});
+  }
+
   getAll(params: object = {}) {
     const formattedParams = new HttpParams({
       fromObject: { ...params }

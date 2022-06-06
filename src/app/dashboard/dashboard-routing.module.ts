@@ -4,11 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth.guard';
 import { DashboardLayoutComponent } from './template-parts/dashboard-layout/dashboard-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { VehicleStaysComponent } from './components/vehicle-stays/vehicle-stays.component';
+import { ListVehicleStaysComponent } from './components/vehicle-stays/list-vehicle-stays/list-vehicle-stays.component';
 import { ListVehiclesComponent } from './components/vehicles/list-vehicles/list-vehicles.component';
 import { RegisterVehicleComponent } from './components/vehicles/register-vehicle/register-vehicle.component';
 import { ListVehicleTypesComponent } from './components/vehicle-types/list-vehicle-types/list-vehicle-types.component';
 import { RegisterVehicleTypeComponent } from './components/vehicle-types/register-vehicle-type/register-vehicle-type.component';
+import { VehicleEntranceComponent } from './components/vehicle-stays/vehicle-entrance/vehicle-entrance.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'estancias', component: VehicleStaysComponent },
+      { path: 'entrada-salida-de-vehiculos', component: VehicleEntranceComponent },
+      { path: 'estancias', component: ListVehicleStaysComponent },
       { path: 'vehiculos', component: ListVehiclesComponent },
       { path: 'vehiculos/registrar', component: RegisterVehicleComponent },
       { path: 'tipos-de-vehiculos', component: ListVehicleTypesComponent },

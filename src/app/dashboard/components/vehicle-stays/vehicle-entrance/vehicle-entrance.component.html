@@ -1,0 +1,145 @@
+<div class="list-vehicles">
+    <div class="title-container">
+        <h1>E/S de Vehículos</h1>
+        <button
+            mat-flat-button
+            color="primary"
+            routerLink="/dashboard/vehiculos/registrar"
+        >
+            Agregar vehículo
+        </button>
+    </div>
+    <div class="register-entrance">
+        <h2>Registrar entrada de vehículo</h2>
+        <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+            class="form"
+        >
+            <mat-form-field>
+                <mat-select
+                    formControlName="vehicleId"
+                    placeholder="Numero de placa"
+                    #singleSelect
+                >
+                    <mat-option>
+                        <ngx-mat-select-search
+                            [formControl]="inputFilter"
+                            [searching]="searching"
+                            placeholderLabel="Buscar numero de placa..."
+                            noEntriesFoundLabel="No se encontro el numero de placa, por favor de click al botón 'Agregar vehículo'"
+                        ></ngx-mat-select-search>
+                    </mat-option>
+                    <mat-option
+                        *ngFor="let vehicle of filteredVehicles | async"
+                        [value]="vehicle.id"
+                    >
+                        {{vehicle.plate_number}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+            <button type="button" mat-raised-button>
+                Limpiar formulario
+            </button>
+            <button type="submit" mat-flat-button color="accent">
+                Registrar entrada
+            </button>
+        </form>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="parked-vehicles">
+        <h2>Lista de vehículos estacionados</h2>
+        <mat-form-field appearance="standard">
+            <mat-label>Filtrar por numero de placa</mat-label>
+            <input
+                matInput
+                type="text"
+                (keyup)="applyFilter($event)"
+                placeholder="Ingrese el numero de placa"
+                #input
+            >
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+            <mat-progress-bar
+                mode="indeterminate"
+                *ngIf="isLoading"
+            ></mat-progress-bar>
+            <table
+                mat-table
+                [dataSource]="dataSource"
+            >
+                <ng-container matColumnDef="id">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                    >
+                        Id
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        {{row.id}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="vehicleId">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                    >
+                        Vehículo
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        {{row.vehicle_id}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="checkIn">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                    >
+                        Hora de entrada
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        {{row.check_in}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="options">
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                    >
+                        Opciones
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                    <button
+                        mat-flat-button
+                        color="primary"
+                        (click)="openCheckOutDialog(row.id)"
+                    >
+                        Registrar salida
+                    </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr
+                    class="mat-row"
+                    *matNoDataRow
+                >
+                    <td class="mat-cell" colspan="4">No se encontraron resultados para la busqueda "{{input.value}}"</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Páginación de datos"></mat-paginator>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Registrar salida</h1>
+<div mat-dialog-content>
+    ¿Esta seguro de registrar la salida de este vehículo?
+</div>
+<div mat-dialog-actions>
+    <button
+        mat-button
+        mat-dialog-close
+        (click)="cancel()"
+    >
+        Cancelar
+    </button>
+    <button
+        mat-flat-button
+        color="primary"
+        (click)="confirm()"
+    >
+        Confirmar
+    </button>
+</div>

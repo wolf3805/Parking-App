@@ -14,6 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -23,11 +24,13 @@ import { HeaderComponent } from './template-parts/header/header.component';
 import { LeftSidebarComponent } from './template-parts/left-sidebar/left-sidebar.component';
 import { DashboardLayoutComponent } from './template-parts/dashboard-layout/dashboard-layout.component';
 import { ListVehiclesComponent } from './components/vehicles/list-vehicles/list-vehicles.component';
-import { VehicleStaysComponent } from './components/vehicle-stays/vehicle-stays.component';
+import { ListVehicleStaysComponent } from './components/vehicle-stays/list-vehicle-stays/list-vehicle-stays.component';
 import { RegisterVehicleComponent } from './components/vehicles/register-vehicle/register-vehicle.component';
 import { DeleteDialogComponent } from './components/dialogs/delete-dialog/delete-dialog.component';
 import { ListVehicleTypesComponent } from './components/vehicle-types/list-vehicle-types/list-vehicle-types.component';
 import { RegisterVehicleTypeComponent } from './components/vehicle-types/register-vehicle-type/register-vehicle-type.component';
+import { VehicleEntranceComponent } from './components/vehicle-stays/vehicle-entrance/vehicle-entrance.component';
+import { ConfirmCheckoutDialogComponent } from './components/dialogs/confirm-checkout-dialog/confirm-checkout-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +39,13 @@ import { RegisterVehicleTypeComponent } from './components/vehicle-types/registe
     HeaderComponent,
     LeftSidebarComponent,
     ListVehiclesComponent,
-    VehicleStaysComponent,
+    ListVehicleStaysComponent,
     RegisterVehicleComponent,
     DeleteDialogComponent,
     ListVehicleTypesComponent,
     RegisterVehicleTypeComponent,
+    VehicleEntranceComponent,
+    ConfirmCheckoutDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +63,7 @@ import { RegisterVehicleTypeComponent } from './components/vehicle-types/registe
     MatButtonModule,
     MatCheckboxModule,
     MatSelectModule,
+    NgxMatSelectSearchModule,
     MatSnackBarModule,
     MatDialogModule,
     ReactiveFormsModule,

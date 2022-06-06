@@ -5,15 +5,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { VehicleStay } from 'src/app/models/VehicleStay';
-import { VehicleStaysService } from '../../services/vehicle-stays.service';
-import { DeleteDialogComponent } from '../dialogs/delete-dialog/delete-dialog.component';
+import { VehicleStaysService } from '../../../services/vehicle-stays.service';
+import { DeleteDialogComponent } from '../../dialogs/delete-dialog/delete-dialog.component';
 
 @Component({
-  selector: 'app-vehicle-stays',
-  templateUrl: './vehicle-stays.component.html',
-  styleUrls: ['./vehicle-stays.component.scss']
+  selector: 'app-list-vehicle-stays',
+  templateUrl: './list-vehicle-stays.component.html',
+  styleUrls: ['./list-vehicle-stays.component.scss']
 })
-export class VehicleStaysComponent implements OnInit {
+export class ListVehicleStaysComponent implements OnInit {
 
   filters: object = {};
   isLoading: boolean = false;

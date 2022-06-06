@@ -16,7 +16,6 @@ export class RegisterVehicleComponent implements OnInit {
 
   submitted: boolean = false;
   disabled: boolean = false;
-  accessDenied: boolean = false;
   loginForm = this.formBuilder.group({
     plateNumber: ['', [Validators.required]],
     vehicleTypeId: ['', [Validators.required]],
@@ -40,7 +39,6 @@ export class RegisterVehicleComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.accessDenied = false;
     this.submitted = true;
 
     if (!this.loginForm.valid) {
